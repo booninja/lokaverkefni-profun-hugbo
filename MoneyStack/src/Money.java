@@ -1,4 +1,6 @@
-public class Money {
+import java.util.Observable;
+
+public class Money{
   private int amount;
 
   public Money(int amount) {

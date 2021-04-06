@@ -3,7 +3,7 @@ public class MoneyStack {
 	private Money[] theStack;
 	private int nextPushLocation; // Location in theStack array, where next push
 									// will insert. 0 means: stack is empty.
-
+	
 	public MoneyStack() {
 		theStack = new Money[MoneyStack.theCapacity];
 		nextPushLocation = 0;
@@ -16,7 +16,22 @@ public class MoneyStack {
 			return false;
 		}
 	}
-
+	
+	public boolean isEmpty() {
+		if(nextPushLocation == 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public int getCapacity() {
+		return theCapacity;
+	}
+	
+	public int getCurrentSize() {
+		return nextPushLocation;
+	}
+	
 	public void push(Money element) throws ArrayIndexOutOfBoundsException {
 		theStack[nextPushLocation++] = element;
 	}
@@ -32,4 +47,5 @@ public class MoneyStack {
 		}
 		return currentSum;
 	}
+	
 }

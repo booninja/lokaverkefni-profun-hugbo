@@ -1,19 +1,19 @@
 
-public class EitthvertSingleton {
+public class ResultStorageSingleton {
 	
-	private static EitthvertSingleton theInstance = null;
+	private static ResultStorageSingleton theInstance = null;
 	
 	private int popStackIsEmtpy;
+	private int
 	
-	
-	public static EitthvertSingleton getInstance() {
+	public static ResultStorageSingleton getInstance() {
 		if (theInstance == null) { // Lazy instantiation
-			theInstance = new EitthvertSingleton();
+			theInstance = new ResultStorageSingleton();
 		}
 		return theInstance;
 	}
 	
-	protected EitthvertSingleton() { // Class may not be instantiated by others
+	protected ResultStorageSingleton() { // Class may not be instantiated by others
 	};
 	
 	/**

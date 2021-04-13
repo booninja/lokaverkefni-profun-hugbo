@@ -4,7 +4,14 @@ public class ResultStorageSingleton {
 	private static ResultStorageSingleton theInstance = null;
 	
 	private int popStackIsEmtpy;
-	private int
+	public static int popCounter;
+	public static int pushCounter;
+	private static boolean pushPopWasTested;
+	private static int arrayOutOfBoundsExeptionThrownInPush;
+	private static int arrayOutOfBoundsExeptionThrownInPop;
+	
+	public static int[] isFullCalled;
+	
 	
 	public static ResultStorageSingleton getInstance() {
 		if (theInstance == null) { // Lazy instantiation
@@ -29,4 +36,25 @@ public class ResultStorageSingleton {
 	public void incrPopStackIsEmpty() {
 		popStackIsEmtpy++;
 	}
+	public static void setPushPopWasTested() {
+		pushPopWasTested = true;
+	}
+	
+	public static void incrArrayOutOfBoundsExeptionThrownInPush() {
+		arrayOutOfBoundsExeptionThrownInPush++;
+	}
+	public static void incrArrayOutOfBoundsExeptionThrownInPop() {
+		arrayOutOfBoundsExeptionThrownInPop++;
+	}
+
+	public int getArrayOutOfBoundsExeptionThrownInPush() {
+		return arrayOutOfBoundsExeptionThrownInPush;
+	}
+
+
+	public int getArrayOutOfBoundsExeptionThrownInPop() {
+		return arrayOutOfBoundsExeptionThrownInPop;
+	}
+	
+	
 }

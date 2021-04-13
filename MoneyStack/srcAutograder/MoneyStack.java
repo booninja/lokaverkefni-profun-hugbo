@@ -5,11 +5,19 @@ public class MoneyStack {
 									// will insert. 0 means: stack is empty.
 	//TODO:
 	public MoneyStack() {
+		
+		if ( 0 != ResultStorageSingleton.pushCounter
+			&& ResultStorageSingleton.pushCounter == ResultStorageSingleton.popCounter) {
+			ResultStorageSingleton.setPushPopWasTested();
+		}
+		ResultStorageSingleton.pushCounter = 0;
+		ResultStorageSingleton.popCounter = 0;
 		theStack = new Money[MoneyStack.theCapacity];
 		nextPushLocation = 0;
 	}
 
 	public boolean isFull() {
+		ResultStorageSingleton.isFullCalled[nextPushLocation];
 		if (nextPushLocation == theCapacity) {
 			return true;
 		} else {
@@ -33,10 +41,16 @@ public class MoneyStack {
 	}
 	
 	public void push(Money element) throws ArrayIndexOutOfBoundsException {
+		if(nextPushLocation == theCapacity) {
+			ResultStorageSingleton.incrArrayOutOfBoundsExeptionThrownInPush();
+		}
 		theStack[nextPushLocation++] = element;
 	}
 
 	public Money pop() throws ArrayIndexOutOfBoundsException {
+		if(nextPushLocation == 0) {
+			ResultStorageSingleton.incrArrayOutOfBoundsExeptionThrownInPop();
+		}
 		return theStack[--nextPushLocation];
 	}
 	//TODO: currectSum < 0

@@ -17,8 +17,8 @@ public class MoneyStack {
 	}
 
 	public boolean isFull() {
-		ResultStorageSingleton.isFullCalled[nextPushLocation];
-		if (nextPushLocation == theCapacity) {
+		ResultStorageSingleton.isFullCalled.push(nextPushLocation);
+		if (nextPushLocation >= theCapacity) {
 			return true;
 		} else {
 			return false;
@@ -26,21 +26,26 @@ public class MoneyStack {
 	}
 	
 	public boolean isEmpty() {
+		//TODO : ResultStorageSingleton.isEmptyCalledTrue = true;
 		if(nextPushLocation == 0) {
 			return true;
 		}
+		//TODO : ResultStorageSingleton.isEmptyCalledFalse = true;
 		return false;
 	}
 	
 	public int getCapacity() {
+		//TODO : ResultStorageSingleton.isGetCapacityCalled = true;
 		return theCapacity;
 	}
 	
 	public int getCurrentSize() {
+		//TODO : ResultStorageSingleton.incrCurrectSizeEmpty[nextPushLocation] = true ;
 		return nextPushLocation;
 	}
 	
 	public void push(Money element) throws ArrayIndexOutOfBoundsException {
+		//TODO: geyma element í TestPushPop
 		if(nextPushLocation == theCapacity) {
 			ResultStorageSingleton.incrArrayOutOfBoundsExeptionThrownInPush();
 		}
@@ -48,6 +53,7 @@ public class MoneyStack {
 	}
 
 	public Money pop() throws ArrayIndexOutOfBoundsException {
+		// TODO: Skoða ef theStack[nextPushLocation] er það sama og TestPushPop
 		if(nextPushLocation == 0) {
 			ResultStorageSingleton.incrArrayOutOfBoundsExeptionThrownInPop();
 		}
@@ -56,10 +62,12 @@ public class MoneyStack {
 	//TODO: currectSum < 0
 	// -	currentSum >= 0
 	public int sum() {
+
 		int currentSum = 0;
 		for (int i = nextPushLocation-1; i >= 0; i--) {
 			currentSum +=(theStack[i]).getAmount();
 		}
+		//TODO : ResultStorageSingleton.sumIsCalled.push(currentSum);
 		return currentSum;
 	}
 	

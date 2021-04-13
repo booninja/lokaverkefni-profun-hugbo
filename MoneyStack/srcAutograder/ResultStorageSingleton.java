@@ -11,8 +11,7 @@ public class ResultStorageSingleton {
 	private static int arrayOutOfBoundsExeptionThrownInPop;
 	
 	public static int[] isFullCalled;
-	
-	
+
 	public static ResultStorageSingleton getInstance() {
 		if (theInstance == null) { // Lazy instantiation
 			theInstance = new ResultStorageSingleton();

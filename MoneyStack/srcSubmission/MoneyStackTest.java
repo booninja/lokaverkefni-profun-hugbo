@@ -25,6 +25,7 @@ public class MoneyStackTest {
 		assertSame(myStack.pop(), m23);
 		assertSame(myStack.pop(), m11);
 	}
+
 	@Test
 	public void testIsFull() {
 		assertFalse(myStack.isFull());
@@ -35,6 +36,7 @@ public class MoneyStackTest {
 		myStack.push(m11);
 		assertTrue(myStack.isFull());
 	}
+
 	@Test(expected = ArrayIndexOutOfBoundsException.class)
 	public void testOverFull() {
 		for(int i=0; i<myStack.getCapacity()+1; i++) {

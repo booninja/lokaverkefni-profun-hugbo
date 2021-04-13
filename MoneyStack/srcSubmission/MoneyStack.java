@@ -49,7 +49,7 @@ public class MoneyStack {
 	}
 
 	public int sum() {
-		//TODO: sum
+		//TODO:
 		int currentSum = 0;
 		for (int i = nextPushLocation-1; i >= 0; i--) {
 			currentSum +=(theStack[i]).getAmount();

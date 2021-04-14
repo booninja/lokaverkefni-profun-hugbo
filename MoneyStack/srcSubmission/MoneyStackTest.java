@@ -9,6 +9,7 @@ public class MoneyStackTest {
 	private Money m11;
 	private Money m23;
 	private MoneyStack myStack;
+	private ResultStorageSingleton resultStorage;
 	
 	
 	@Before

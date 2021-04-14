@@ -1,23 +1,27 @@
 public class MoneyStack {
+	private ResultStorageSingleton resultStorage;
 	private static final int theCapacity = 10;
 	private Money[] theStack;
 	private int nextPushLocation; // Location in theStack array, where next push
 									// will insert. 0 means: stack is empty.
-	//TODO:
+
 	public MoneyStack() {
-		
-		if ( 0 != ResultStorageSingleton.pushCounter
-			&& ResultStorageSingleton.pushCounter == ResultStorageSingleton.popCounter) {
-			ResultStorageSingleton.setPushPopWasTested();
+		resultStorage = ResultStorageSingleton.getInstance();
+		if ( 0 != resultStorage.incrPushCounter
+			&& resultStorage.incrPushCounter == resultStorage.popCounter) {
+			resultStorage.setPushPopWasTested();
 		}
-		ResultStorageSingleton.pushCounter = 0;
-		ResultStorageSingleton.popCounter = 0;
+		resultStorage.setPushCounter();
+		resultStorage.setPopCounter();
+		resultStorage.setSumIsCalledArray(theCapacity);
+		resultStorage.setIsFullCalledArray(theCapacity);
+		resultStorage.setisCurrentSizeCalledArray(theCapacity);
 		theStack = new Money[MoneyStack.theCapacity];
 		nextPushLocation = 0;
 	}
 
 	public boolean isFull() {
-		ResultStorageSingleton.isFullCalled.push(nextPushLocation);
+		resultStorage.setIsFullCalled(nextPushLocation);
 		if (nextPushLocation >= theCapacity) {
 			return true;
 		} else {
@@ -26,48 +30,50 @@ public class MoneyStack {
 	}
 	
 	public boolean isEmpty() {
-		//TODO : ResultStorageSingleton.isEmptyCalledTrue = true;
+		resultStorage.isEmptyCalledTrue = true;
 		if(nextPushLocation == 0) {
 			return true;
 		}
-		//TODO : ResultStorageSingleton.isEmptyCalledFalse = true;
+		resultStorage.isEmptyCalledFalse = true;
 		return false;
 	}
 	
 	public int getCapacity() {
-		//TODO : ResultStorageSingleton.isGetCapacityCalled = true;
+		resultStorage.isGetCapacityCalled = true;
 		return theCapacity;
 	}
 	
 	public int getCurrentSize() {
-		//TODO : ResultStorageSingleton.incrCurrectSizeEmpty[nextPushLocation] = true ;
+		resultStorage.isCurrectSizeCalled[nextPushLocation] = true;
 		return nextPushLocation;
 	}
 	
 	public void push(Money element) throws ArrayIndexOutOfBoundsException {
 		//TODO: geyma element í TestPushPop
 		if(nextPushLocation == theCapacity) {
-			ResultStorageSingleton.incrArrayOutOfBoundsExeptionThrownInPush();
+			resultStorage.incrArrayOutOfBoundsExeptionThrownInPush();
 		}
 		theStack[nextPushLocation++] = element;
 	}
 
 	public Money pop() throws ArrayIndexOutOfBoundsException {
+		resultStorage.incrPopCounter();
 		// TODO: Skoða ef theStack[nextPushLocation] er það sama og TestPushPop
 		if(nextPushLocation == 0) {
-			ResultStorageSingleton.incrArrayOutOfBoundsExeptionThrownInPop();
+			resultStorage.incrArrayOutOfBoundsExeptionThrownInPop();
 		}
 		return theStack[--nextPushLocation];
 	}
-	//TODO: currectSum < 0
-	// -	currentSum >= 0
+	//TODO: Sum array implementation ??
+
 	public int sum() {
 
 		int currentSum = 0;
 		for (int i = nextPushLocation-1; i >= 0; i--) {
 			currentSum +=(theStack[i]).getAmount();
+			resultStorage.sumIsCalled(i, (theStack[i]).getAmount());
 		}
-		//TODO : ResultStorageSingleton.sumIsCalled.push(currentSum);
+
 		return currentSum;
 	}
 	

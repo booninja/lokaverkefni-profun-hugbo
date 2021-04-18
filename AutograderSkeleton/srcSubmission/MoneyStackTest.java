@@ -1,9 +1,8 @@
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
-
 
 public class MoneyStackTest {
 	private Money m11;
@@ -22,19 +21,17 @@ public class MoneyStackTest {
 	@Test
 	public void testPopPush() {
 		myStack.push(m11);
+		assertSame(myStack.pop(), m11);
 		myStack.push(m23);
 		assertSame(myStack.pop(), m23);
-		assertSame(myStack.pop(), m11);
 	}
 
 	@Test
 	public void testIsFull() {
-		assertFalse(myStack.isFull());
-		for(int i=0; i<myStack.getCapacity()-1; i++) {
-			myStack.push(m11);
+		for (int i = 0; i < myStack.getCapacity(); i++) {
 			assertFalse(myStack.isFull());
+			myStack.push(m11);
 		}
-		myStack.push(m11);
 		assertTrue(myStack.isFull());
 	}
 
